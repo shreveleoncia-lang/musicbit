@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐播放器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh; 
+            padding: 20px;
+            color: white;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .music-list { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; }
+        .music-item { 
+            background: rgba(255,255,255,0.9); 
+            color: #333; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 10px; 
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .music-item:hover { transform: translateY(-2px); }
+        .music-name { font-weight: bold; font-size: 1.2em; margin-bottom: 5px; }
+        .music-meta { font-size: 0.9em; color: #666; }
+        .audio-player { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: #2c3e50; 
+            padding: 15px; 
+            display: none;
+        }
+        .player-controls { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; }
+        .player-controls button { 
+            background: #3498db; 
+            border: none; 
+            color: white; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            cursor: pointer;
+        }
+        audio { width: 100%; }
+        #nowPlaying { text-align: center; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>音乐播放器</h1>
+            <p>点击音乐开始播放</p>
+        </header>
+        
+        <div class="music-list" id="musicList">
+            <!-- 音乐列表由JavaScript生成 -->
+        </div>
+        
+        <div class="audio-player" id="audioPlayer">
+            <div class="player-controls">
+                <button onclick="playPrevious()">上一首</button>
+                <button onclick="togglePlayPause()" id="playPauseBtn">播放</button>
+                <button onclick="playNext()">下一首</button>
+            </div>
+            <audio id="mainAudio" controls></audio>
+            <div id="nowPlaying">选择音乐播放</div>
+        </div>
+    </div>
+
+    <script>
+        // 使用免费音乐库的歌曲
+        const musicList = [
+            {
+                name: "轻快旋律 - 示例音乐1",
+                url: "https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3",
+                info: "电子节奏，轻松愉快"
+            },
+            {
+                name: "温暖钢琴 - 示例音乐2", 
+                url: "https://assets.mixkit.co/music/preview/mixkit-deep-urban-623.mp3",
+                info: "柔和的钢琴旋律"
+            },
+            {
+                name: "夏日节奏 - 示例音乐3",
+                url: "https://assets.mixkit.co/music/preview/mixkit-summer-breeze-9.mp3", 
+                info: "轻快的夏日风格"
+            },
+            {
+                name: "冒险之旅 - 示例音乐4",
+                url: "https://assets.mixkit.co/music/preview/mixkit-driving-ambition-32.mp3",
+                info: "充满动感的背景音乐"
+            }
+        ];
+
+        let currentMusicIndex = -1;
+        let isPlaying = false;
+
+        // 初始化音乐列表
+        function initMusicList() {
+            const container = document.getElementById('musicList');
+            container.innerHTML = '';
+            
+            musicList.forEach((music, index) => {
+                const item = document.createElement('div');
+                item.className = 'music-item';
+                item.innerHTML = `
+                    <div class="music-name">${music.name}</div>
+                    <div class="music-meta">${music.info}</div>
+                `;
+                item.onclick = () => playMusic(index);
+                container.appendChild(item);
+            });
+        }
+
+        // 播放音乐
+        function playMusic(index) {
+            const music = musicList[index];
+            const audio = document.getElementById('mainAudio');
+            const player = document.getElementById('audioPlayer');
+            
+            currentMusicIndex = index;
+            audio.src = music.url;
+            player.style.display = 'block';
+            
+            audio.play().then(() => {
+                document.getElementById('nowPlaying').textContent = `正在播放: ${music.name}`;
+                document.getElementById('playPauseBtn').textContent = '暂停';
+IsPlayingIsPlayingIsPlayingIsPlayingIsPlayingIsPlayingIsPlaying=true；IsPlaying=true；true；IsPlaying=true；true；IsPlaying=true；true；IsPlaying=true；true；IsPlaying=true；true；IsPlaying=正确;
+})})}))}).catch(错误=>{}).catch(错误=>{catch(错误=>{}).catch(错误=>{catch(错误=>{}).catch(错误=>{catch(错误=>{}).catch(错误=>{catch(错误=>{}).catch(错误=>{catch(错误=>{}).catch(错误=>{
+consoleconsoleconsoleconsoleconsoleconsole控制台控制台控制台控制台控制台控制台控制台控制台控制台。误差('播放失败：'，误差)；console.error('播放失败：'，误差)；error('播放失败：'，误差)；console.error('播放失败：'，误差)；error('播放失败：'，误差)；console.error('播放失败：'，误差)；error('播放失败：'error('播放失败：'，误差)；console.error('播放失败：'，误差)；error('播放失败：'，误差)；console.error('播放失败：'，误差)；error('播放失败：'，误差)；console.error('播放失败：'，误差)；)；console.error('播放失败：'，误差)；error('播放失败：'，误差)；console.error('播放失败：'，误差)；error('播放失败：'，误差)；console.error('播放失败：'，误差)；error('播放失败：'，误差
+文件。getElementById('NowPlaying').textContent文件。getElementById('NowPlaying').textContent='播放失败，请检查网络连接'；文件。getElementById('NowPlaying').textContent='播放失败，请检查网络连接'；'播放失败，请检查网络连接'；文件。getElementById('NowPlaying')。textContent='播放失败，请检查网络连接'；
+});
+}
+
+// 切换播放/暂停// 切换播放/暂停
+函数togglePlayPause(){函数函数togglePlayPause(){函数togglePlayPause(){togglePlayPause(){
+Const audio常量音频=document.getElementById('mainAudio')；常量音频=文件。getElementById('mainAudio')；文档。getElementById('mainAudio')；const audio=document.getElementById('mainAudio')；
+Const按钮Const按钮=文档.getElementById('playPauseBtn')；常量按钮=文件。getElementById('playPauseBtn')；文档。getElementById('playPauseBtn')；常量按钮=document.getElementById('playPauseBtn')；
+            
+if(正在播放){Ifif(正在播放){if(Isplaying){(Isplaying){
+音频音频。暂停()；音频。暂停()；暂停()；音频。暂停()；
+buttonbutton.textContent='播放'；button.textContent='播放'；textContent='播放'；button.textContent='播放'；
+IsPlayingIsPlaying=false；IsPlaying=false；false；IsPlaying=false；
+}else{}}else{}else{else{
+音频音频。播放()；音频。播放()；播放()；音频。玩()；
+buttonbutton.textContent='暂停'；button.textContent='暂停'；textContent='暂停'；button.textContent='暂停'；
+IsPlayingIsPlaying=true；IsPlaying=true；true；IsPlaying=true；
+}
+}
+
+// 播放上一首// 播放上一首
+函数playPrevious(){函数函数playPrevious(){函数playPrevious(){playPrevious(){
+if(currentMusicIndexif(currentMusicIndex<=0){if(currentMusicIndex<=0){0){if(currentMusicIndex<=0){
+PlayMusic(musicListPlayMusic(musicList.length-1)；PlayMusic(musicList.length-1)；PlayMusic(musicList.length-1)；
+}else{}}else{}else{else{
+PlayMusic(当前音乐索引PlayMusic(当前音乐索引-1)；PlayMusic(currentMusicIndex-1)；1)；PlayMusic(currentMusicIndex-1)；
+}
+}
+
+// 播放下一首// 播放下一首
+函数PlayNEXT(){函数函数PlayNEXT(){函数PlayNEXT(){PlayNEXT(){
+if(currentMusicIndexif(currentMusicIndex>=musicList.Length-1){if(currentMusicIndex>=musicList.Length-1){musicList.长度-1){if(currentMusicIndex>=musicList.length-1){
+PlayMusic(0)；playMusic(0)PlayMusic(0)；PlayMusic(0)；
+}else{}}else{}else{else{
+PlayMusic(当前音乐索引PlayMusic(当前音乐索引+1)；PlayMusic(currentMusicIndex+1)；1)；PlayMusic(currentMusicIndex+1)；
+}
+}
+
+// 初始化// 初始化
+文档文档。addEventListener('DOMContentLoaded'，函数(){document.addEventListener('DOMContentLoaded'，函数(){addEventListener('DOMContentLoaded'，函数(){document.addEventListener('DOMContentLoaded'，函数(){
+initMusicList()；initMusicList()initMusicList()；initMusicList()；
+            
+// 音频结束自动播放下一首// 音频结束自动播放下一首
+文件。getElementById('mainAudio')。addEventListener('ended'，函数(){document文件。getElementById('mainAudio')文件。getElementById('mainAudio')。addEventListener('ended'，函数(){document文件文件。getElementById('mainAudio').addEventListener('ended'，函数(){document文件。getElementById('mainAudio')getElementById('mainAudio')。addEventListener('ended'，函数(){document.getElementById('mainAudio').addEventListener('ended'，函数(){getElementById('mainAudio').AddEventListener('ended'，函数(){
+PlayNEXT()；playNext()PlayNEXT()；PlayNEXT()；
+});
+});
+</脚本></脚本>
+</身体>
+</超文本标记语言></超文本标记语言>
